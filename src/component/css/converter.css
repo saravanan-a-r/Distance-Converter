@@ -1,0 +1,22 @@
+
+input {
+    border: none;
+    border-radius: 2px;
+    border-bottom: 3px solid red;
+    outline: none;
+    font-size: 50px;
+    padding: 12px;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+select.distance {
+    border: none;
+    background-color: transparent;
+    font-size: 32px;
+    outline: none;
+    padding: 12px;
+    cursor: pointer;
+}
