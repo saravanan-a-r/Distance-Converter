@@ -1,5 +1,6 @@
 import React from 'react';
 import "../css/converter.css";
+import DropDown from "./dropdown";
 import DistanceCoverter from "../../utils/distance-converter";
 
 let distanceCoverter = new DistanceCoverter();
@@ -15,11 +16,25 @@ export default class Converter extends React.Component {
             destination : "km",
             destination_value : 0
         };
+        
+        this.distanceOptions = [{
+            value : "mm",
+            label : "Millimeter"
+        }, {
+            value : "cm",
+            label : "Centimeter"
+        }, {
+            value : "m",
+            label : "Meter"
+        }, {
+            value : "km",
+            label : "Kilometer"
+        }];
     }
 
-    handleSourceSelection(event) {
+    handleSourceSelection(event, selectedOption) {
         this.setState({
-            source: event.target.value
+            source: selectedOption.value
         });
         
         setTimeout(() => {
@@ -29,9 +44,9 @@ export default class Converter extends React.Component {
         }, 0);
     }
 
-    handleDestSelection(event) {
+    handleDestSelection(event, selectedOption) {
         this.setState({
-            destination : event.target.value
+            destination : selectedOption.value
         });
 
         this.handleDestInput({
@@ -40,6 +55,7 @@ export default class Converter extends React.Component {
     }
 
     handleSourceInput(event) {
+
         let convertedValues = distanceCoverter.convert(
             this.state.source, 
             event.target.value, //this.state.source_value
@@ -77,46 +93,42 @@ export default class Converter extends React.Component {
         return (
             <React.Fragment>
 
-                <div id="source">
-                    <select name="distance" className="distance" 
-                        value={this.state.source} 
-                        onChange={(event) => this.handleSourceSelection(event)} 
+                <div id="source" className="fields">
+
+                    <DropDown
+                        options={this.distanceOptions}
+                        onChange={this.handleSourceSelection.bind(this)}
+                        selectedValue="m"
+                        selectedLabel="Meter"
                     >
-
-                        <option value="mm">Millimeter</option>
-                        <option value="cm">Centimeter</option>
-                        <option value="m">Meter</option>
-                        <option value="km">Kilometer</option>
-
-                    </select>
+                    </DropDown>
 
                     <input id="source-input" type="number" 
                         placeholder="Enter value" 
                         onChange={(event) => this.handleSourceInput(event)} 
                         value={this.state.source_value}
                         onFocus={(event) => {this.handleFocus(event)}}
+                        tabIndex="2"
                     >
                     </input>
                 </div>
 
-                <div id="destination">
+                <div id="destination" className="fields">
 
-                    <select name="distance" className="distance" 
-                        value={this.state.destination} 
-                        onChange={(event) => {this.handleDestSelection(event)}}
+                    <DropDown
+                        options={this.distanceOptions}
+                        onChange={this.handleDestSelection.bind(this)}
+                        selectedValue="km"
+                        selectedLabel="Kilometer"
                     >
-                        <option value="mm">Millimeter</option>
-                        <option value="cm" >Centimeter</option>
-                        <option value="m">Meter</option>
-                        <option value="km">Kilometer</option>
-
-                    </select>
+                    </DropDown>
 
                     <input id="destination-input" type="number" 
                         placeholder="Enter value" 
                         onChange={(event) => this.handleDestInput(event)} 
                         value={this.state.destination_value}
                         onFocus={(event) => {this.handleFocus(event)}}
+                        tabIndex="4"
                     >
                     </input>
                 
