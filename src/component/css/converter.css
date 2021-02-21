@@ -4,10 +4,13 @@
 }
 
 input {
+    position: relative;
+    top: -6px;
+    left: 32px;
     border: none;
     border-radius: 2px;
     outline: none;
-    font-size: 50px;
+    font-size: 32px;
     padding: 12px;
     border-bottom: 3px solid;
     background-color: transparent;

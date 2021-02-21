@@ -10,6 +10,7 @@
     display: inline-block;
     margin-right: 24px;
     min-width: 154px;
+    transition: 300ms all linear;
 }
 
 .drop-down-options {
@@ -22,6 +23,11 @@
     background-color: #FFFFFF;
     z-index: 1;
     display: none;
+}
+
+.drop-down:hover {
+    color: #FFFFFF;
+    background-color: #000000;
 }
 
 .drop-down-options.show {
