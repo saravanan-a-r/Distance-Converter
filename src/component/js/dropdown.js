@@ -14,16 +14,21 @@ export default class DropDown extends React.Component {
         this.options = props.options;
 
         this.state = {
-            showOptions : false,
-            selectedOption : {
-                value : props.selectedValue,
-                label : props.selectedLabel
-            }
+            showOptions : false
         };
     }
 
+    getLabel(value) {
+        let list = this.options;
+        for(let i = 0; i < list.length; i++) {
+            if(list[i].value === value) {
+                return list[i].label;
+            }
+        }
+        return null;
+    }
+
     toggleOptions(event) {
-        
         this.setState({
             showOptions : !this.state.showOptions
         });
@@ -40,7 +45,7 @@ export default class DropDown extends React.Component {
 
         return (
             <div className="drop-down" onClick={(event) => {this.toggleOptions(event);}}>
-                {this.state.selectedOption.label}
+                {this.getLabel(this.props.selectedValue)}
                 <div className={"drop-down-options " + (this.state.showOptions ? "show" : "")}>
                     {
                         this.options.map((eachOption) => {
@@ -51,7 +56,6 @@ export default class DropDown extends React.Component {
                             );
                         })
                     }
-                    
                 </div>
             </div>
         );

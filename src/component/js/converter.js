@@ -49,13 +49,15 @@ export default class Converter extends React.Component {
             destination : selectedOption.value
         });
 
-        this.handleDestInput({
-            target : document.getElementById("destination-input")
+        setTimeout(() => {
+            this.handleDestInput({
+                target : document.getElementById("destination-input")
+            });
         });
     }
 
     handleSourceInput(event) {
-
+        
         let convertedValues = distanceCoverter.convert(
             this.state.source, 
             event.target.value, //this.state.source_value
@@ -89,6 +91,22 @@ export default class Converter extends React.Component {
         }
     }
 
+    handleSwap(event) {
+        let temp;
+
+        temp = this.state.source;
+        this.setState({
+            source : this.state.destination,
+            destination : temp
+        });
+        
+        temp = this.state.source_value;
+        this.setState({
+            source_value : this.state.destination_value,
+            destination_value : temp
+        });
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -98,8 +116,7 @@ export default class Converter extends React.Component {
                     <DropDown
                         options={this.distanceOptions}
                         onChange={this.handleSourceSelection.bind(this)}
-                        selectedValue="m"
-                        selectedLabel="Meter"
+                        selectedValue={this.state.source}
                     >
                     </DropDown>
 
@@ -113,13 +130,14 @@ export default class Converter extends React.Component {
                     </input>
                 </div>
 
+                <div className="iswap rotate-90" onClick={(event) => this.handleSwap(event)}></div>
+
                 <div id="destination" className="fields">
 
                     <DropDown
                         options={this.distanceOptions}
                         onChange={this.handleDestSelection.bind(this)}
-                        selectedValue="km"
-                        selectedLabel="Kilometer"
+                        selectedValue={this.state.destination}
                     >
                     </DropDown>
 
