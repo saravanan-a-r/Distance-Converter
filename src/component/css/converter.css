@@ -1,15 +1,36 @@
+.fields {
+    position: relative;
+    margin: 26px 0px;
+}
 
 input {
     border: none;
     border-radius: 2px;
-    border-bottom: 3px solid red;
     outline: none;
     font-size: 50px;
     padding: 12px;
+    border-bottom: 3px solid;
+    transition: 300ms all linear;
+}
+
+input:focus {
+    border-bottom: 3px solid red;
 }
 
 input[type=number]::-webkit-inner-spin-button {
     -webkit-appearance: none;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-size: 32px;
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-size: 32px;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */  
+    font-size: 32px;
 }
 
 select.distance {
@@ -18,5 +39,10 @@ select.distance {
     font-size: 32px;
     outline: none;
     padding: 12px;
+    margin-right: 54px;
     cursor: pointer;
+}
+
+select option {
+    padding: 12px;
 }
