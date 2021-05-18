@@ -1,4 +1,4 @@
-export default class DistanceCoverter {
+class DistanceCalculator {
 
     constructor() {
 
@@ -12,7 +12,14 @@ export default class DistanceCoverter {
         this.distanceFractor = [1, 10, 100, 1000];
     }
     
-    convert(sourceUnits, sourceValue, destUnits, destValue) {
+    convert(state) {
+        let input = state.input;
+        let output = state.output;
+
+        let sourceUnits = input.scale;
+        let destUnits = output.scale;
+        let sourceValue = input.value;
+        let destValue = output.value;
 
         let distanceRank = this.distanceRank;
 
@@ -45,16 +52,13 @@ export default class DistanceCoverter {
 
         if(needToggle) {
             needToggle = false;
-            return {
-                source_value : destValue,
-                destination_value : sourceValue
-            };
+            state.input.value = destValue;
+            state.output.value = sourceValue;
         }
-
-        return {
-            source_value : sourceValue,
-            destination_value : destValue
-        };
+        else {
+            state.input.value = sourceValue;
+            state.output.value = destValue;
+        }
     }
 
     calculateConvertionFactor(sourceRank, destRank) {
@@ -83,3 +87,5 @@ export default class DistanceCoverter {
         return resultFactor;
     }
 }
+
+export default new DistanceCalculator();
