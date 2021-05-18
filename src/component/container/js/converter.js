@@ -3,25 +3,12 @@ import { connect } from 'react-redux';
 import distanceAction from '../../../action/distance-action';
 import temperatureAction from '../../../action/temperature-action';
 import DistanceCoverter from '../../presentation/js/distance-converter';
+import TemperatureConverter from '../../presentation/js/temperature-converter';
 
 class Converter extends React.Component {
 
     constructor() {
         super();
-        
-        this.distanceOptions = [{
-            value : "mm",
-            label : "Millimeter"
-        }, {
-            value : "cm",
-            label : "Centimeter"
-        }, {
-            value : "m",
-            label : "Meter"
-        }, {
-            value : "km",
-            label : "Kilometer"
-        }];
     }
 
     handleSourceSelection(event, selectedOption) {
@@ -48,22 +35,6 @@ class Converter extends React.Component {
         });
     }
 
-    handleSwap(event) {
-        let temp;
-
-        temp = this.state.source;
-        this.setState({
-            source : this.state.destination,
-            destination : temp
-        });
-        
-        temp = this.state.source_value;
-        this.setState({
-            source_value : this.state.destination_value,
-            destination_value : temp
-        });
-    }
-
     render() {
         switch(this.props.userProfile.defaultPage) {
 
@@ -75,22 +46,24 @@ class Converter extends React.Component {
                         distanceOutputScaleChanged={this.props.distanceOutputScaleChanged}
                         distanceInputValueChanged={this.props.distanceInputValueChanged}
                         distanceOutputValueChanged={this.props.distanceOutputValueChanged}
+                        handleSwap={this.props.handleDistanceSwap}
                     >
                     </DistanceCoverter>
                 );
             break;
 
             case "temperature" : 
-                // return (
-                //     <TemperatureConverter
-                //         temperature={this.props.temperature}
-                //         temperatureInputScaleChanged={this.props.temperatureInputScaleChanged}
-                //         temperatureOutputScaleChanged={this.props.temperatureOutputScaleChanged}
-                //         temperatureInputValueChanged={this.props.temperatureInputValueChanged}
-                //         temperatureOutputValueChanged={this.props.temperatureOutputValueChanged}
-                //     >
-                //     </TemperatureConverter>
-                // );
+                return (
+                    <TemperatureConverter
+                        temperature={this.props.temperature}
+                        temperatureInputScaleChanged={this.props.temperatureInputScaleChanged}
+                        temperatureOutputScaleChanged={this.props.temperatureOutputScaleChanged}
+                        temperatureInputValueChanged={this.props.temperatureInputValueChanged}
+                        temperatureOutputValueChanged={this.props.temperatureOutputValueChanged}
+                        handleSwap={this.props.handleTemperatureSwap}
+                    >
+                    </TemperatureConverter>
+                );
             break;
         }
     }
@@ -100,7 +73,8 @@ const mapStateToProps = (state) => {
   
     return {
         userProfile : state.userProfile,
-        distance : state.distance
+        distance : state.distance,
+        temperature : state.temperature
     };
 };
 
@@ -123,6 +97,10 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(distanceAction.distanceOutputValueChanged(newOutputValue));
         },
 
+        handleDistanceSwap : () => {
+            dispatch(distanceAction.handleDistanceSwap());
+        },
+
         temperatureInputScaleChanged : (newInputScale) => {
             dispatch(temperatureAction.temperatureInputScaleChanged(newInputScale));
         },
@@ -137,7 +115,11 @@ const mapDispatchToProps = (dispatch) => {
 
         temperatureOutputValueChanged : (newOutputValue) => {
             dispatch(temperatureAction.temperatureOutputValueChanged(newOutputValue));
-        }
+        },
+
+        handleTemperatureSwap : () => {
+            dispatch(temperatureAction.handleTemperatureSwap());
+        },
     };
 };
 

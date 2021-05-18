@@ -46,7 +46,7 @@ export default function DistanceCoverter(props) {
                 </input>
             </div>
 
-            <div className="iswap rotate-90" onClick={(event) => this.handleSwap(event)}></div>
+            <div className="iswap rotate-90" onClick={(event) => props.handleSwap(event)}></div>
 
             <div id="destination" className="fields">
 

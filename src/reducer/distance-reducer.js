@@ -64,6 +64,18 @@ const distanceReducer = (state = initialStateForDistance, action) => {
             };
             distanceCalculator.convert(state);
         break;
+
+        case "distance/swap" : 
+            state = {
+                ...state,
+                input : {
+                    ...state.output
+                },
+                output : {
+                    ...state.input
+                }
+            };
+        break;
     }
 
     return state;

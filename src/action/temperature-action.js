@@ -1,5 +1,3 @@
-import store from "../store/store";
-
 class TemperatureAction {
 
     temperatureInputScaleChanged(newInputScale) {
@@ -27,6 +25,13 @@ class TemperatureAction {
         return {
             type : "temperature/output_value_changed",
             payload : newOutputValue
+        };
+    }
+
+    handleTemperatureSwap() {
+        return {
+            type : "temperature/swap",
+            payload : undefined
         };
     }
 }

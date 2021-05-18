@@ -13,17 +13,17 @@ const initialStateForDistance = {
 const initialStateForTemperature = {
 
     input : {
-        scale : "",
+        scale : "c",
         value : 0
     },
     output : {
-        scale : "",
+        scale : "f",
         value : 0
     }
 };
 
 const initialStateForUserProfile = {
-    defaultPage : "distance",
+    defaultPage : "temperature",
     nightMode : false
 };
 

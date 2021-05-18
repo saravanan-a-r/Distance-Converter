@@ -1,5 +1,3 @@
-import store from "../store/store";
-
 class DistanceAction {
 
     distanceInputScaleChanged(newInputScale) {
@@ -27,6 +25,13 @@ class DistanceAction {
         return {
             type : "distance/output_value_changed",
             payload : newOutputValue
+        };
+    }
+
+    handleDistanceSwap() {
+        return {
+            type : "distance/swap",
+            payload : undefined
         };
     }
 }
