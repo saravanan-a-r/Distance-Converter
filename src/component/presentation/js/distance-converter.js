@@ -1,6 +1,6 @@
 import React from "react";
-import DropDown from "../../js/dropdown";
 import "../css/distance-converter.css";
+import DropDown from "./dropdown";
 
 export default function DistanceCoverter(props) {
 
