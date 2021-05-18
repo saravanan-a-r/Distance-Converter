@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import distanceAction from '../../../action/distance-action';
+import temperatureAction from '../../../action/temperature-action';
 import DistanceCoverter from '../../presentation/js/distance-converter';
 
 class Converter extends React.Component {
@@ -80,15 +81,18 @@ class Converter extends React.Component {
             break;
 
             case "temperature" : 
-                //return (<TemperatureConverter></TemperatureConverter>);
-            break;
-
-            default : 
-                return (<DistanceCoverter></DistanceCoverter>);
+                // return (
+                //     <TemperatureConverter
+                //         temperature={this.props.temperature}
+                //         temperatureInputScaleChanged={this.props.temperatureInputScaleChanged}
+                //         temperatureOutputScaleChanged={this.props.temperatureOutputScaleChanged}
+                //         temperatureInputValueChanged={this.props.temperatureInputValueChanged}
+                //         temperatureOutputValueChanged={this.props.temperatureOutputValueChanged}
+                //     >
+                //     </TemperatureConverter>
+                // );
             break;
         }
-
-        return (<div></div>);
     }
 }
 
@@ -103,17 +107,36 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     
     return {
-        distanceInputScaleChanged : (value) => {
-            dispatch(distanceAction.distanceInputScaleChanged(value));
+        distanceInputScaleChanged : (newInputScale) => {
+            dispatch(distanceAction.distanceInputScaleChanged(newInputScale));
         },
-        distanceOutputScaleChanged : (value) => {
-            dispatch(distanceAction.distanceOutputScaleChanged(value));
+
+        distanceOutputScaleChanged : (newOutputScale) => {
+            dispatch(distanceAction.distanceOutputScaleChanged(newOutputScale));
         },
-        distanceInputValueChanged : (value) => {
-            dispatch(distanceAction.distanceInputValueChanged(value));
+
+        distanceInputValueChanged : (newInputValue) => {
+            dispatch(distanceAction.distanceInputValueChanged(newInputValue));
         },
-        distanceOutputValueChanged : (value) => {
-            dispatch(distanceAction.distanceOutputValueChanged(value));
+
+        distanceOutputValueChanged : (newOutputValue) => {
+            dispatch(distanceAction.distanceOutputValueChanged(newOutputValue));
+        },
+
+        temperatureInputScaleChanged : (newInputScale) => {
+            dispatch(temperatureAction.temperatureInputScaleChanged(newInputScale));
+        },
+
+        temperatureOutputScaleChanged : (newOutputScale) => {
+            dispatch(temperatureAction.temperatureOutputScaleChanged(newOutputScale));
+        },
+
+        temperatureInputValueChanged : (newInputValue) => {
+            dispatch(temperatureAction.temperatureInputValueChanged(newInputValue));
+        },
+
+        temperatureOutputValueChanged : (newOutputValue) => {
+            dispatch(temperatureAction.temperatureOutputValueChanged(newOutputValue));
         }
     };
 };
