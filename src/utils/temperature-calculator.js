@@ -1,6 +1,10 @@
-class TemperatureCalculator {
+import Calculator from "./calculator";
+
+class TemperatureCalculator extends Calculator {
 
     convert(state) {
+
+        this.parseStateValues(state);
 
         let input = state.input;
         let output = state.output;

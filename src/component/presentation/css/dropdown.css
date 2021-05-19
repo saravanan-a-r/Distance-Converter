@@ -25,10 +25,10 @@
     display: none;
 }
 
-.drop-down:hover {
+/* .drop-down:hover {
     color: #FFFFFF;
     background-color: #000000;
-}
+} */
 
 .drop-down-options.show {
     display: inline-block;

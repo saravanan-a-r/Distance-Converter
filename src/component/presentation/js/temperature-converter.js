@@ -15,12 +15,18 @@ export default function TemperatureConverter(props) {
         label : "Kelvin"
     }];
     
-    function handleFocus(event) {
+    function handleFocusIn(event) {
         if(!event.target.value || event.target.value === "0") {
             event.target.value = undefined;
         }
     }
 
+    function handleFocusOut(event) {
+        if(event.target.value.trim() === "") {
+            event.target.value = "0";
+        }
+    }
+    
     return (
         <React.Fragment>
 
@@ -37,7 +43,8 @@ export default function TemperatureConverter(props) {
                     placeholder="Enter value" 
                     onChange={(event) => {props.temperatureInputValueChanged(event.target.value)}} 
                     value={props.temperature.input.value}
-                    onFocus={(event) => {handleFocus(event)}}
+                    onFocus={(event) => {handleFocusIn(event)}}
+                    onBlur={(event) => {handleFocusOut(event)}}
                     tabIndex="2"
                 >
                 </input>
@@ -58,7 +65,8 @@ export default function TemperatureConverter(props) {
                     placeholder="Enter value" 
                     onChange={(event) => {props.temperatureOutputValueChanged(event.target.value)}} 
                     value={props.temperature.output.value}
-                    onFocus={(event) => {handleFocus(event)}}
+                    onFocus={(event) => {handleFocusIn(event)}}
+                    onBlur={(event) => {handleFocusOut(event)}}
                     tabIndex="4"
                 >
                 </input>

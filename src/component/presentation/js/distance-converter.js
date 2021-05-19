@@ -18,9 +18,15 @@ export default function DistanceCoverter(props) {
         label : "Kilometer"
     }];
     
-    function handleFocus(event) {
+    function handleFocusIn(event) {
         if(!event.target.value || event.target.value === "0") {
             event.target.value = undefined;
+        }
+    }
+
+    function handleFocusOut(event) {
+        if(event.target.value.trim() === "") {
+            event.target.value = "0";
         }
     }
 
@@ -40,7 +46,8 @@ export default function DistanceCoverter(props) {
                     placeholder="Enter value" 
                     onChange={(event) => {props.distanceInputValueChanged(event.target.value)}} 
                     value={props.distance.input.value}
-                    onFocus={(event) => {handleFocus(event)}}
+                    onFocus={(event) => {handleFocusIn(event)}}
+                    onBlur={(event) => {handleFocusOut(event)}}
                     tabIndex="2"
                 >
                 </input>
@@ -61,7 +68,8 @@ export default function DistanceCoverter(props) {
                     placeholder="Enter value" 
                     onChange={(event) => {props.distanceOutputValueChanged(event.target.value)}} 
                     value={props.distance.output.value}
-                    onFocus={(event) => {handleFocus(event)}}
+                    onFocus={(event) => {handleFocusIn(event)}}
+                    onBlur={(event) => {handleFocusOut(event)}}
                     tabIndex="4"
                 >
                 </input>

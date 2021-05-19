@@ -17,9 +17,9 @@ class Header extends React.Component {
                     <div key="temperature" onClick={() => this.props.changeDefaultPage("temperature")} className={"each-section " + (this.props.defaultPage === "temperature" ? "selected" : "")}>
                         Temperature
                     </div>
-                    <div key="distance2" onClick={() => this.props.changeDefaultPage("distance2")} className={"each-section " + (this.props.defaultPage === "distance2" ? "selected" : "")}>
+                    {/* <div key="distance2" onClick={() => this.props.changeDefaultPage("distance2")} className={"each-section " + (this.props.defaultPage === "distance2" ? "selected" : "")}>
                         Distance
-                    </div>
+                    </div> */}
                 </div>
             </React.Fragment>
         );

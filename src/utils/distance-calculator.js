@@ -1,7 +1,11 @@
-class DistanceCalculator {
+import Calculator from "./calculator";
+
+class DistanceCalculator extends Calculator{
 
     constructor() {
 
+        super();
+        
         this.distanceRank = {
             mm : 1,
             cm : 10,
@@ -13,6 +17,9 @@ class DistanceCalculator {
     }
     
     convert(state) {
+
+        this.parseStateValues(state);
+
         let input = state.input;
         let output = state.output;
 

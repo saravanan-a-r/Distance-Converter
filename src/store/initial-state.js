@@ -23,7 +23,7 @@ const initialStateForTemperature = {
 };
 
 const initialStateForUserProfile = {
-    defaultPage : "temperature",
+    defaultPage : "distance",
     nightMode : false
 };
 
